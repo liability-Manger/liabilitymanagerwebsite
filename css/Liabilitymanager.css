@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.logo {
+    width: 100px; /* Adjust width as needed */
+    float: left;
+}
+
+.search {
+    flex: 1;
+    margin: 0 20px; /* Add margin as needed */
+    float: right;
+}
+
+.user-profile {
+    position: relative;
+    float: right;
+    margin-left: 20px;
+}
+
+.user-profile .profile-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.user-profile .profile-popup {
+    position: absolute;
+    top: 50px; /* Adjust distance from profile circle */
+    right: -10px; /* Adjust distance from right */
+    background-color: #fff;
+    border: 1px solid #333;
+    padding: 10px;
+    display: none;
+}
+
+.user-profile .profile-popup.show {
+    display: block;
+}
+
+#sidebar {
+    width: 200px;
+    background-color: #f4f4f4;
+    position: fixed;
+    top: 80px; /* Adjust distance from the top */
+    bottom: 0;
+    padding-top: 20px;
+    left: 0;
+}
+
+#sidebar a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+#content {
+    margin-top: 10px; /* Adjust margin to accommodate the fixed header */
+    margin-left: 10px; /* Adjust margin to match the sidebar width */
+    padding: 20px;
+    position: fixed;
+    top: 80px; /* Adjust to match the height of the header */
+    left: 200px; /* Adjust to match the width of the sidebar */
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+}
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+

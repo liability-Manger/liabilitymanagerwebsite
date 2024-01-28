@@ -1,0 +1,63 @@
+
+.total-boxes {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  
+  .box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 50%;
+  }
+  
+  .receivables {
+    border-right: 1px solid #ddd;
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin-bottom: 0;
+  }
+
+  .box.payables {
+    margin-left: 10px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 20px; /* Adjust height as needed */
+    background-color: orange; /* Set default color for incomplete portion */
+    position: relative;
+    border-radius: 20px;
+  }
+  
+  .progress-completed {
+    height: 100%;
+    background-color: blue; /* Set color for completed portion */
+    width: 40%;
+    border-radius: 20px;
+  }
+  
+  .progress-incomplete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 60%; /* Adjust width dynamically based on completion percentage */
+  }
+
+  .money {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .no {
+    margin-left: 200px;
+  }
+  

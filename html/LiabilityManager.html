@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Example</title>
+    <link rel="stylesheet" href="../css/Liabilitymanager.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="your-logo.png" alt="Logo">
+        </div>
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button onclick="searchFunction()">Search</button> <!-- Add this button -->
+        </div>
+        <div class="user-profile">
+            <div class="profile-circle" onclick="toggleProfilePopup()"></div>
+            <div class="profile-popup" id="profilePopup">
+                <a href="#">Edit Profile</a>
+                <br>
+                <a href="#">Sign Out</a>
+            </div>
+        </div>
+        <div class="settings">
+            <a href="#"><img src="settings-icon.png" alt="Settings"></a>
+        </div>
+    </header>
+    <div id="sidebar">
+        <a href="#" onclick="loadPage('home.html')">Home</a>
+        <a href="#" onclick="loadPage('items.html')">Items</a>
+        <a href="#" onclick="loadPage('banking.html')">Banking</a>
+        <a href="#" onclick="loadPage('sales.html')">Sales</a>
+        <a href="#" onclick="loadPage('Customers.html')">Customers</a>
+        <a href="#" onclick="loadPage('SalesReceipts.html')">Sales Receipts</a>
+        <a href="#" onclick="loadPage('PaymentsReceived.html')">Payments Received</a>
+        <a href="#" onclick="loadPage('purchases.html')">Purchases</a>
+        <a href="#" onclick="loadPage('time_tracking.html')">Time Tracking</a>
+        <a href="#" onclick="loadPage('accountant.html')">Accountant</a>
+        <a href="#" onclick="loadPage('reports.html')">Reports</a>
+        <a href="#" onclick="loadPage('documents.html')">Documents</a>
+    </div>
+    <div id="content">
+        <iframe id="iframe" src="home.html"></iframe>
+    </div>
+    
+
+    <script src="../js/LiabilityManager.js"></script>
+</body>
+</html>
