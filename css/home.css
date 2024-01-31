@@ -60,4 +60,7 @@
   .no {
     margin-left: 200px;
   }
-  
+
+  #chart_div{
+    width: 200px;
+  }
