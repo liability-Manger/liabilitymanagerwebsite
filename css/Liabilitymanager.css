@@ -15,6 +15,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
+    height: 40px;
 }
 
 .logo {
@@ -26,6 +27,10 @@ header {
     flex: 1;
     margin: 0 20px; /* Add margin as needed */
     float: right;
+    font-size: 20px;
+    border: solid 0.3m #000000;
+    border-radius: 2.5em;
+
 }
 
 .user-profile {
@@ -89,5 +94,4 @@ iframe {
     height: 100%;
     border: none;
 }
-
 

@@ -31,3 +31,4 @@ function searchFunction() {
 function loadPage(page) {
     document.getElementById('iframe').src = page;
 }
+
