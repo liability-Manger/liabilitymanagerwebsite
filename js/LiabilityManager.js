@@ -32,3 +32,20 @@ function loadPage(page) {
     document.getElementById('iframe').src = page;
 }
 
+function toggleProfileMenu() {
+    var menu = document.getElementById("profileMenu");
+    menu.classList.toggle("show");
+}
+
+// Close the menu if the user clicks outside of it
+window.onclick = function(event) {
+    if (!event.target.matches('.user-profile')) {
+        var menus = document.getElementsByClassName("profile-menu");
+        for (var i = 0; i < menus.length; i++) {
+            var menu = menus[i];
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        }
+    }
+}
