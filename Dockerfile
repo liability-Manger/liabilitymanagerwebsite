@@ -1,5 +1,5 @@
 # Use a base image with the desired runtime environment (e.g., Node.js, Python, etc.)
-FROM node:14-alpine
+FROM node:latest 
 
 # Set the working directory inside the container
 WORKDIR /app
