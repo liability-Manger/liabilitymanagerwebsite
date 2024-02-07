@@ -1,15 +1,17 @@
-# Use the official MySQL image
-FROM mysql:latest
+version: '3.8'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: myrootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./sql-scripts/:/docker-entrypoint-initdb.d/
 
-# Set the MySQL root password (change this to your preferred password)
-ENV MYSQL_ROOT_PASSWORD=rootpassword
-
-# Set the character set and collation
-ENV MYSQL_CHARSET=utf8mb4
-ENV MYSQL_COLLATION=utf8mb4_unicode_ci
-
-# Expose the MySQL port
-EXPOSE 3306
-
-# Start MySQL server
-CMD ["mysqld"]
+volumes:
+  db-data:
