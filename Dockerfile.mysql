@@ -1,17 +1,16 @@
-version: '3.8'
-services:
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: myrootpassword
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword
-    ports:
-      - "3306:3306"
-    volumes:
-      - db-data:/var/lib/mysql
-      - ./sql-scripts/:/docker-entrypoint-initdb.d/
+# Use the official MySQL image as the base
+FROM mysql:5.7
 
-volumes:
-  db-data:
+# Set environment variables for MySQL
+ENV MYSQL_DATABASE=mydatabase \
+    MYSQL_ROOT_PASSWORD=myrootpassword \
+    MYSQL_USER=myuser \
+    MYSQL_PASSWORD=mypassword
+
+# Optional: Add custom configuration
+COPY my-custom.cnf /etc/mysql/conf.d/
+
+# Optional: Initialize the database
+COPY ./sql-scripts/ /docker-entrypoint-initdb.d/
+
+EXPOSE 3306
