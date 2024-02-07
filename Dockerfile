@@ -1,14 +1,14 @@
-# Original Dockerfile
-FROM node:latest 
+# Use the official Nginx image from Docker Hub
+FROM nginx:alpine
 
-WORKDIR /app
+# Remove the default nginx static assets
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY package*.json ./
+# Copy static assets into the container
+COPY . /usr/share/nginx/html
 
-RUN npm install
+# Expose port 80
+EXPOSE 80
 
-COPY . .
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
+# Start Nginx when the container has provisioned
+CMD ["nginx", "-g", "daemon off;"]
