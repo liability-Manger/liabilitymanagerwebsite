@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>home</title>
     <link rel="stylesheet" href="../css/home.css" />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -129,7 +129,7 @@
   </head>
   <body>
     <header>
-      <h2>Dashboard</h2>
+      <h2>test Dashboard</h2>
     </header>
     <div class="total-boxes" >
       <div class="box receivables">

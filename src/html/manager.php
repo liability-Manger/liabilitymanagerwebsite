@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header Example</title>
+    <title>LiabilityManager</title>
     <link rel="stylesheet" href="../css/Liabilitymanager.css">
     <style>
         
@@ -31,18 +31,18 @@
         </div>
     </header>
     <div id="sidebar">
-        <a href="#" onclick="loadPage('home.html')">Home</a>
-        <a href="#" onclick="loadPage('items.html')">Items</a>
-        <a href="#" onclick="loadPage('banking.html')">Banking</a>
+        <a href="#" onclick="loadPage('home.php')">Home</a>
+        <a href="#" onclick="loadPage('items.php')">Items</a>
+        <a href="#" onclick="loadPage('banking.php')">Banking</a>
         <a href="#" onclick="loadPage('')">Sales</a>
-        <a href="#" onclick="loadPage('Customers.html')">Customers</a>
-        <a href="#" onclick="loadPage('SalesReceipts.html')">Sales Receipts</a>
-        <a href="#" onclick="loadPage('PaymentsReceived.html')">Payments Received</a>
-        <a href="#" onclick="loadPage('purchases.html')">Purchases</a>
-        <a href="#" onclick="loadPage('time_tracking.html')">Time Tracking</a>
-        <a href="#" onclick="loadPage('accountant.html')">Accountant</a>
-        <a href="#" onclick="loadPage('reports.html')">Reports</a>
-        <a href="#" onclick="loadPage('documents.html')">Documents</a>
+        <a href="#" onclick="loadPage('Customers.php')">Customers</a>
+        <a href="#" onclick="loadPage('SalesReceipts.php')">Sales Receipts</a>
+        <a href="#" onclick="loadPage('PaymentsReceived.php')">Payments Received</a>
+        <a href="#" onclick="loadPage('purchases.php')">Purchases</a>
+        <a href="#" onclick="loadPage('time_tracking.php')">Time Tracking</a>
+        <a href="#" onclick="loadPage('accountant.php')">Accountant</a>
+        <a href="#" onclick="loadPage('reports.php')">Reports</a>
+        <a href="#" onclick="loadPage('documents.php')">Documents</a>
     </div>
     <div id="content">
         <iframe id="iframe" src="home.html"></iframe>
