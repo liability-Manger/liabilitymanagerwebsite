@@ -10,12 +10,12 @@
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" href="../css/Login.css" />
+    <link rel="stylesheet" href="../../css/Login.css" />
   </head>
   <body>
    
     <section class="forms-section">
-      <h1 class="section-title" style="color: #5ce1e6">Liability Manager</h1>
+      <h1 class="section-title" style="color: #5ce1e6">Admin Page</h1>
       <img src="../images/lm.png" alt="" width="200px" height="200px" />
       <div class="forms">
         <div class="form-wrapper is-active">
@@ -37,7 +37,7 @@
               <php include 'login_query.php'?>
             </fieldset>
             <button type="submit" class="btn-login">Login</button>
-            <button><a href="adminlogin.php">Admin</a></button>
+            <button><a href="index.php">Back</a></button>
           </form>
         </div>
         <div class="form-wrapper">
@@ -70,6 +70,6 @@
       </div>
     </section>
     <!-- partial -->
-    <script src="../js/Login.js"></script>
+    <script src="../../sjs/Login.js"></script>
   </body>
 </html>
