@@ -6,7 +6,7 @@
 		$email = $_POST['email'];
 		$password = md5($_POST['password']);
 		
-		$query = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email' && password = '$password'") or die(mysqli_error());
+		$query = mysqli_query($conn, "SELECT * FROM admins WHERE email = '$email' && password = '$password'") or die(mysqli_error());
 		$fetch = mysqli_fetch_array($query);
 		$row = $query->num_rows;
 		
