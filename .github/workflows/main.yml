@@ -3,49 +3,9 @@ name: Build Docker Images
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
-  frontend:
-    name: Build Frontend Image
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Build Frontend Docker image
-        run: docker build -t danikais/liabilitymanager-frontend:latest ./Dockerfile
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Push Frontend Docker image
-        run: docker push danikais/liabilitymanager-frontend:latest
-
-  backend:
-    name: Build Backend Image
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Build Backend Docker image
-        run: docker build -t danikais/liabilitymanager-backend:latest ./Dockerfile.php
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Push Backend Docker image
-        run: docker push danikais/liabilitymanager-backend:latest
-
   mysql:
     name: Build MySQL Image
     runs-on: ubuntu-latest
@@ -65,3 +25,23 @@ jobs:
 
       - name: Push MySQL Docker image
         run: docker push danikais/liabilitymanager-mysql:latest
+
+  php:
+    name: Build PHP Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build PHP Docker image
+        run: docker build -t danikais/liabilitymanager-php:latest -f dockerfile.php .
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push PHP Docker image
+        run: docker push danikais/liabilitymanager-php:latest
