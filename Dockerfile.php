@@ -20,7 +20,7 @@ RUN echo "date.timezone = UTC" >> "$PHP_INI_DIR/php.ini"
 # Set up phpMyAdmin
 ENV PHPMYADMIN_VERSION=5.1.1
 RUN mkdir -p /var/www/html/phpmyadmin \
-    && curl -L https://github.com/phpmyadmin/phpmyadmin/archive/refs/tags/rel-${PHPMYADMIN_VERSION}.tar.gz | tar xz --strip-components=1 -C /var/www/html/phpmyadmin \
+    && curl -L https://github.com/phpmyadmin/phpmyadmin/archive/rel-${PHPMYADMIN_VERSION}.tar.gz | tar xz --strip-components=1 -C /var/www/html/phpmyadmin \
     && mv /var/www/html/phpmyadmin/config.sample.inc.php /var/www/html/phpmyadmin/config.inc.php
 
 # Expose ports
