@@ -8,9 +8,9 @@ ENV MYSQL_DATABASE=mydatabase \
     MYSQL_PASSWORD=mypassword
 
 # Optional: Add custom configuration
-COPY my-custom.cnf /etc/mysql/conf.d/
+# >COPY my-custom.cnf /etc/mysql/conf.d/
 
 # Optional: Initialize the database
-COPY ./sql-scripts/ /docker-entrypoint-initdb.d/
+# >COPY ./sql-scripts/ /docker-entrypoint-initdb.d/
 
 EXPOSE 3306
