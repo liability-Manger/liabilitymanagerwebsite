@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Customers</title>
-<link rel="stylesheet" href="../css/Customers.css">
+<link rel="stylesheet" href="../../css/Customers.css">
 </head>
 <body>
   <h1>Customers</h1>
@@ -37,7 +37,7 @@
       <button id="saveCustomerBtn">Save Customer</button>
     </div>
   </div>
-  <script src="../js/Customers.js"></script>
-  <script src="../js/serever.js"></script>
+  <script src="../../js/Customers.js"></script>
+  <script src="../../js/serever.js"></script>
 </body>
 </html>

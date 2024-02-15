@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiabilityManager</title>
-    <link rel="stylesheet" href="../css/Liabilitymanager.css">
+    <link rel="stylesheet" href="../../css/Liabilitymanager.css">
     <style>
         
     </style>
@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="../images/lm.png" alt="Logo" width="70px" height="70px">
+            <img src="../../images/lm.png" alt="Logo" width="70px" height="70px">
         </div>
         <div class="search">
             <input type="text" id="searchInput" placeholder="Search...">
@@ -49,6 +49,6 @@
     </div>
     
 
-    <script src="../js/LiabilityManager.js"></script>
+    <script src="../../js/LiabilityManager.js"></script>
 </body>
 </html>

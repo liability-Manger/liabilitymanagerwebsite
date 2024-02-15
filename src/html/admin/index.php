@@ -2,21 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Animated Form | Nothing4us</title>
+    <title>login</title>
     <meta charset="UTF-8" />
-    <title>AnimaForm</title>
+    <title>login</title>
     <link
       href="https://fonts.googleapis.com/css?family=Roboto"
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" href="../css/Login.css" />
+    <link rel="stylesheet" href="../../css/Login.css" />
   </head>
   <body>
    
     <section class="forms-section">
       <h1 class="section-title" style="color: #5ce1e6">Liability Manager</h1>
-      <img src="../images/lm.png" alt="" width="200px" height="200px" />
+      <img src="../../images/lm.png" alt="" width="200px" height="200px" />
       <div class="forms">
         <div class="form-wrapper is-active">
           <button type="button" class="switcher switcher-login">
@@ -70,6 +70,6 @@
       </div>
     </section>
     <!-- partial -->
-    <script src="../js/Login.js"></script>
+    <script src="../../js/Login.js"></script>
   </body>
 </html>

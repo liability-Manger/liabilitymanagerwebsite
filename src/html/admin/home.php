@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>home</title>
-    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../../css/home.css" />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart', 'bar']});
@@ -129,7 +129,7 @@
   </head>
   <body>
     <header>
-      <h2>test Dashboard</h2>
+      <h2>Dashboard</h2>
     </header>
     <div class="total-boxes" >
       <div class="box receivables">
@@ -171,7 +171,7 @@
 
 
 
-    <script src="../js/home.js"></script>
+    <script src="../../js/home.js"></script>
     <script src="data.json"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <canvas id="myChart"></canvas>
