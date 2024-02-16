@@ -37,7 +37,7 @@
               <php include 'login_query.php'?>
             </fieldset>
             <button type="submit" class="btn-login">Login</button>
-            <button><a href="adminlogin.php">Admin</a></button>
+            <button><a href="../admin/adminlogin.php">Admin</a></button>
           </form>
         </div>
         <div class="form-wrapper">

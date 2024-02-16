@@ -23,20 +23,20 @@
             Login
             <span class="underline"></span>
           </button>
-          <form class="form form-login" method="post" action="login.php">
+          <form class="form form-login" id="login" method="POST" action="/login.php">
             <fieldset>
               <legend>Please, enter your email and password for login.</legend>
               <div class="input-block">
                 <label for="login-email">E-mail</label>
-                <input id="login-email" type="email" required />
+                <input form="login" id="login-email" type="email" name="email" required />
               </div>
               <div class="input-block">
                 <label for="login-password">Password</label>
-                <input id="login-password" type="password" required />
+                <input form="login" id="login-password" type="password" name="password" required />
               </div>
-              <php include 'login_query.php'?>
+              
             </fieldset>
-            <button type="submit" class="btn-login">Login</button>
+            <button type="submit" form="login" class="btn-login">Login</button>
             <button><a href="adminlogin.php">Admin</a></button>
           </form>
         </div>

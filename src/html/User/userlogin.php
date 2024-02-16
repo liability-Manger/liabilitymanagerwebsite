@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Animated Form | Nothing4us</title>
+    <title>login</title>
     <meta charset="UTF-8" />
-    <title>AnimaForm</title>
+    <title>login</title>
     <link
       href="https://fonts.googleapis.com/css?family=Roboto"
       rel="stylesheet"
@@ -15,8 +15,8 @@
   <body>
    
     <section class="forms-section">
-      <h1 class="section-title" style="color: #5ce1e6">Admin Page</h1>
-      <img src="../images/lm.png" alt="" width="200px" height="200px" />
+      <h1 class="section-title" style="color: #5ce1e6">Liability Manager</h1>
+      <img src="../../images/lm.png" alt="" width="200px" height="200px" />
       <div class="forms">
         <div class="form-wrapper is-active">
           <button type="button" class="switcher switcher-login">
@@ -37,7 +37,7 @@
               <php include 'login_query.php'?>
             </fieldset>
             <button type="submit" class="btn-login">Login</button>
-            <button><a href="index.php">Back</a></button>
+            <button><a href="../admin/adminlogin.php">Admin</a></button>
           </form>
         </div>
         <div class="form-wrapper">
@@ -70,6 +70,6 @@
       </div>
     </section>
     <!-- partial -->
-    <script src="../../sjs/Login.js"></script>
+    <script src="../../js/Login.js"></script>
   </body>
 </html>
