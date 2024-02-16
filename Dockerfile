@@ -1,14 +1,20 @@
-# Use the official Nginx image from Docker Hub
-FROM nginx:alpine
+# Use an official PHP image with Apache
+FROM php:7.4-apache
 
-# Remove the default nginx static assets
-RUN rm -rf /usr/share/nginx/html/*
+# Install additional PHP extensions if needed
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Copy static assets into the container
-COPY . /usr/share/nginx/html
+# Enable Apache mod_rewrite
+RUN a2enmod rewrite
 
-# Expose port 80
+# Set the working directory in the container
+WORKDIR /var/www/html
+
+# Copy the application code to the container
+COPY . /var/www/html
+
+# Expose port 80 to access the web server
 EXPOSE 80
 
-# Start Nginx when the container has provisioned
-CMD ["nginx", "-g", "daemon off;"]
+# Start Apache in the foreground
+CMD ["apache2-foreground"]
