@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build App Docker image
+      - name: Build App Docker image + ":$BUILD_NUMBER"
         run: docker build -t danikais/danikais -f Dockerfile .
 
       - name: Build Database Docker image
