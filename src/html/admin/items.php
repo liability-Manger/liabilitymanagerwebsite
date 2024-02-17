@@ -13,7 +13,7 @@
   <table id="itemsTable">
     <thead>
       <tr>
-        <th>Item Image</th>
+       
         <th>Item Name</th>
         <th>Item Description</th>
         <th>Item Price</th>
@@ -21,15 +21,38 @@
       </tr>
     </thead>
     <tbody id="itemsTableBody">
-      <!-- Items will be dynamically added here -->
-    </tbody>
+  <?php
+  include 'db_connection.php'; // Adjust this line to include your actual database connection script
+  $sql = "SELECT * FROM items";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        echo "<tr>
+        
+        <td>" . $row["item_name"] . "</td>
+        <td>" . $row["item_description"] . "</td>
+        <td>" . $row["item_price"] . "</td>
+        <td>
+            <button class='editBtn' data-id='" . $row["id"] . "'>Edit</button>
+            <button class='deleteBtn' data-id='" . $row["id"] . "'>Delete</button>
+        </td>
+      </tr>";
+      }
+  } else {
+      echo "<tr><td colspan='5'>No items found</td></tr>";
+  }
+  $conn->close();
+  ?>
+</tbody>
   </table>
 
   <div id="addItemModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <form action="insert_item.php" method="post">
-        <input type="file" id="itemImage" name="itemImage">
+      <form action="insert_item.php" method="post" enctype="multipart/form-data">
+        
         <input type="text" id="itemName" name="itemName" placeholder="Item Name">
         <input type="text" id="itemDescription" name="itemDescription" placeholder="Item Description">
         <input type="number" id="itemPrice" name="itemPrice" placeholder="Item Price">

@@ -2,116 +2,68 @@ document.addEventListener("DOMContentLoaded", function () {
   const addItemBtn = document.getElementById("addItemBtn");
   const addItemModal = document.getElementById("addItemModal");
   const closeBtn = document.querySelector(".close");
-  const saveItemBtn = document.getElementById("saveItemBtn");
-  const itemsTableBody = document.getElementById("itemsTableBody");
+  const form = document.querySelector("#addItemModal form");
 
-  // Load data from local storage on page load
-  window.addEventListener("load", () => {
-    const savedItems = JSON.parse(localStorage.getItem("items")) || [];
-    savedItems.forEach((item) => {
-      addItemToTable(item);
-    });
-  });
-
+  // Show the add item modal
   addItemBtn.addEventListener("click", () => {
-    addItemModal.style.display = "block";
+      addItemModal.style.display = "block";
   });
 
+  // Close the modal when the close button is clicked
   closeBtn.addEventListener("click", () => {
-    addItemModal.style.display = "none";
+      addItemModal.style.display = "none";
   });
 
+  // Close the modal when clicking outside of it
   window.addEventListener("click", (e) => {
-    if (e.target === addItemModal) {
-      addItemModal.style.display = "none";
-    }
+      if (e.target === addItemModal) {
+          addItemModal.style.display = "none";
+      }
   });
 
-  // Handle save item button click
-  saveItemBtn.addEventListener("click", () => {
-    const itemImage = document.getElementById("itemImage").value;
-    const itemName = document.getElementById("itemName").value;
-    const itemDescription = document.getElementById("itemDescription").value;
-    const itemPrice = document.getElementById("itemPrice").value;
+  // Handle form submission with AJAX
+  form.addEventListener("submit", function(e) {
+      e.preventDefault(); // Prevent the default form submission
 
-    const itemData = {
-      image: itemImage,
-      name: itemName,
-      description: itemDescription,
-      price: itemPrice,
-    };
+      const formData = new FormData(form);
 
-    // Save item to local storage
-    let savedItems = JSON.parse(localStorage.getItem("items")) || [];
-    savedItems.push(itemData);
-    localStorage.setItem("items", JSON.stringify(savedItems));
-
-    addItemToTable(itemData);
-
-    addItemModal.style.display = "none";
+      fetch('insert_item.php', {
+          method: 'POST',
+          body: formData,
+      })
+      .then(response => response.text())
+      .then(data => {
+          console.log(data); // Log the server response for debugging
+          // Optionally, you can refresh the items list here or add the new item directly to the table
+          window.location.reload(); // Simple way to refresh the items list after adding
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
   });
+});
 
-  // Handle delete and edit button click using event delegation
-  itemsTableBody.addEventListener("click", (e) => {
-    if (e.target.classList.contains("deleteBtn")) {
-      const row = e.target.closest("tr");
-      const index = row.rowIndex - 1; // Adjust for the table header
-      row.remove();
-      const savedItems = JSON.parse(localStorage.getItem("items"));
-      savedItems.splice(index, 1);
-      localStorage.setItem("items", JSON.stringify(savedItems));
-    } else if (e.target.classList.contains("editBtn")) {
-      const row = e.target.closest("tr");
-      const index = row.rowIndex - 1; // Adjust for the table header
-      const savedItems = JSON.parse(localStorage.getItem("items"));
-      const itemToEdit = savedItems[index];
-      editItem(itemToEdit, index);
-    }
+document.addEventListener("DOMContentLoaded", function () {
+  // Previous setup code...
+
+  itemsTableBody.addEventListener("click", function(e) {
+      if (e.target.classList.contains("deleteBtn")) {
+          const itemId = e.target.getAttribute("data-id");
+          if (confirm("Are you sure you want to delete this item?")) {
+              fetch('delete_item.php', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+                  body: `id=${itemId}`
+              })
+              .then(response => response.text())
+              .then(data => {
+                  console.log(data);
+                  window.location.reload(); // Reload to update the item list
+              })
+              .catch(error => console.error('Error:', error));
+          }
+      }
   });
-
-  function addItemToTable(itemData) {
-    const newRow = itemsTableBody.insertRow();
-    newRow.innerHTML = `
-        <td><img src="${itemData.image}" alt="" style="width: 50px; height: 50px; border-radius: 50%;"></td>
-        <td>${itemData.name}</td>
-        <td>${itemData.description}</td>
-        <td>${itemData.price}</td>
-        <td><button class="editBtn">Edit</button><button class="deleteBtn">Delete</button></td>
-      `;
-  }
-
-  function editItem(item, index) {
-    const itemImage = document.getElementById("itemImage");
-    const itemName = document.getElementById("itemName");
-    const itemDescription = document.getElementById("itemDescription");
-    const itemPrice = document.getElementById("itemPrice");
-
-    itemImage.value = item.image;
-    itemName.value = item.name;
-    itemDescription.value = item.description;
-    itemPrice.value = item.price;
-
-    saveItemBtn.onclick = function () {
-      const updatedItemData = {
-        image: itemImage.value,
-        name: itemName.value,
-        description: itemDescription.value,
-        price: itemPrice.value,
-      };
-
-      let savedItems = JSON.parse(localStorage.getItem("items")) || [];
-      savedItems[index] = updatedItemData;
-      localStorage.setItem("items", JSON.stringify(savedItems));
-
-      const row = itemsTableBody.children[index];
-      row.children[0].innerHTML = `<img src="${updatedItemData.image}" alt="" style="width: 50px; height: 50px; border-radius: 50%;">`;
-      row.children[1].textContent = updatedItemData.name;
-      row.children[2].textContent = updatedItemData.description;
-      row.children[3].textContent = updatedItemData.price;
-
-      addItemModal.style.display = "none";
-    };
-
-    addItemModal.style.display = "block";
-  }
 });

@@ -35,25 +35,26 @@ header {
 
 .user-profile {
     position: relative;
-    float: right;
-    margin-left: 20px;
+   
 }
 
+
+
 .user-profile .profile-circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #ccc;
-    cursor: pointer;
+    width: 50px; /* Change width to desired size */
+    height: 50px; /* Change height to desired size */
+    border-radius: 50%; /* Make it a perfect circle */
+    background-color: #000000;
+    /* Remove background-color from .user-profile .profile-circle */
 }
 
 .user-profile .profile-popup {
     position: absolute;
-    top: 50px; /* Adjust distance from profile circle */
-    right: -10px; /* Adjust distance from right */
+    top: 60px; /* Adjust distance from profile circle */
+    right: 0; /* Adjust distance from right */
     background-color: #fff;
     border: 1px solid #333;
-    padding: 10px;
+    padding: 0px;
     display: none;
 }
 

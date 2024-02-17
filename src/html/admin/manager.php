@@ -8,28 +8,34 @@
     <style>
         
     </style>
+    <script src="https://kit.fontawesome.com/bf045329d4.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="../../images/lm.png" alt="Logo" width="70px" height="70px">
-        </div>
-        <div class="search">
-            <input type="text" id="searchInput" placeholder="Search...">
-            <button onclick="searchFunction()">Search</button> <!-- Add this button -->
-        </div>
-        <div class="user-profile" onclick="toggleProfileMenu()">
-            <div class="profile-circle"></div>
-            <div class="profile-menu" id="profileMenu">
-                <a href="#">Edit Profile</a>
-                <a href="#">Sign Out</a>
-            </div>
-        </div>
-        </div>
-        <div class="settings">
-            <a href="#"><img src="settings-icon.png" alt="Settings"></a>
-        </div>
-    </header>
+<header>
+    <div class="logo">
+        <img src="../../images/lm.png" alt="Logo" width="70px" height="70px">
+    </div>
+    <div class="search">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button onclick="searchFunction()">Search</button> <!-- Add this button -->
+    </div>
+    
+    <div class="user-profile" onclick="toggleProfileMenu()">
+    <a href="settings.php">
+    <img src="<?php echo isset($_SESSION['profile_image']) ? '../../uploads/' . $_SESSION['profile_image'] : '../../images/profile.png'; ?>" class="profile-circle">
+    <div class="profile-menu" id="profileMenu">
+
+    </div>
+    </a>
+</div>
+    <div class="settings">
+        <a href="#"><i class="fa-solid fa-gear"></i></a>
+    </div>
+    
+
+    
+</header>
+
     <div id="sidebar">
         <a href="#" onclick="loadPage('home.php')">Home</a>
         <a href="#" onclick="loadPage('items.php')">Items</a>
@@ -47,6 +53,13 @@
     <div id="content">
         <iframe id="iframe" src="home.html"></iframe>
     </div>
+    <script>
+function toggleProfileMenu() {
+    var menu = document.getElementById("profileMenu");
+    // Toggle display
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
     
 
     <script src="../../js/LiabilityManager.js"></script>
