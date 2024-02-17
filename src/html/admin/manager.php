@@ -51,7 +51,7 @@
         <a href="#" onclick="loadPage('documents.php')">Documents</a>
     </div>
     <div id="content">
-        <iframe id="iframe" src="home.html"></iframe>
+        <iframe id="iframe" src="home.php"></iframe>
     </div>
     <script>
 function toggleProfileMenu() {
