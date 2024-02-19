@@ -29,10 +29,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push App Docker image
-        run: docker push danikais/danikaisTEST
+        run: docker push danikais/danikaistesting
 
       - name: Push Database Docker image
-        run: docker push danikais/mysqlTEST
+        run: docker push danikais/mysqltesting
 
       - name: Push phpMyAdmin Docker image
-        run: docker push danikais/phpTEST
+        run: docker push danikais/phptesting
