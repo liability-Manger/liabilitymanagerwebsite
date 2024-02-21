@@ -13,14 +13,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build App Docker image + ":$BUILD_NUMBER"
-        run: docker build -t danikais/danikaistest -f Dockerfile .
+      - name: Set timestamp variable
+        id: timestamp
+        run: echo "::set-output name=timestamp::$(date +%Y%m%d%H%M%S)"
+
+      - name: Build App Docker image 
+        run: docker build -t danikais/danikaistest:${{ steps.timestamp.outputs.timestamp }} -f Dockerfile .
 
       - name: Build Database Docker image
-        run: docker build -t danikais/mysql -f Dockerfile.mysql .
+        run: docker build -t danikais/mysqltest:${{ steps.timestamp.outputs.timestamp }} -f Dockerfile.mysql .
 
       - name: Build phpMyAdmin Docker image
-        run: docker build -t danikais/php -f Dockerfile.php .
+        run: docker build -t danikais/phptest:${{ steps.timestamp.outputs.timestamp }} -f Dockerfile.php .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -29,10 +33,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push App Docker image
-        run: docker push danikais/danikais
+        run: docker push danikais/danikaistest:${{ steps.timestamp.outputs.timestamp }}
 
       - name: Push Database Docker image
-        run: docker push danikais/mysql
+        run: docker push danikais/mysqltest:${{ steps.timestamp.outputs.timestamp }}
 
       - name: Push phpMyAdmin Docker image
-        run: docker push danikais/php
+        run: docker push danikais/phptest:${{ steps.timestamp.outputs.timestamp }}
