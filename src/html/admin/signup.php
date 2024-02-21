@@ -4,13 +4,21 @@ include 'db_connection.php';
 
 // Check if email is set and not empty
 if(isset($_POST['email']) && !empty($_POST['email'])) {
-    $email = $conn->real_escape_string($_POST['email']);
-    $password = $conn->real_escape_string($_POST['password']);
-    $name = $conn->real_escape_string($_POST['name']);
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $name = $_POST['name'];
+
+    // Validate email format
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Invalid email format";
+        exit();
+    }
 
     // Check if email already exists in the admins table
-    $sql = "SELECT email FROM admins WHERE email = '$email'";
-    $result = $conn->query($sql);
+    $stmt = $conn->prepare("SELECT email FROM admins WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         // Email already exists
@@ -20,14 +28,17 @@ if(isset($_POST['email']) && !empty($_POST['email'])) {
         // Hash the password for security
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insert new admin into the admins table
-        $insertSql = "INSERT INTO admins (name, email, password) VALUES ('$name', '$email', '$hashed_password')";
-        if ($conn->query($insertSql) === TRUE) {
+        // Insert new admin into the admins table using prepared statement
+        $insertStmt = $conn->prepare("INSERT INTO admins (name, email, password) VALUES (?, ?, ?)");
+        $insertStmt->bind_param("sss", $name, $email, $hashed_password);
+        if ($insertStmt->execute()) {
             header("Location: adminlogin.php");
         } else {
-            echo "Error: " . $insertSql . "<br>" . $conn->error;
+            echo "Error: " . $insertStmt->error;
         }
     }
+    $stmt->close();
+    $insertStmt->close();
 } else {
     echo "Email field is required.";
 }

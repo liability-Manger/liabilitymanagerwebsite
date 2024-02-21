@@ -9,13 +9,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone_number'];
     $address = $_POST['address'];
 
-    $sql = "INSERT INTO customers (customer_name, email, phone_number, address) VALUES ('$name', '$email', '$phone', '$address')";
-
-    if ($conn->query($sql) === TRUE) {
+    // Prepare statement
+    $stmt = $conn->prepare("INSERT INTO customers (customer_name, email, phone_number, address) VALUES (?, ?, ?, ?)");
+    // Bind parameters
+    $stmt->bind_param("ssss", $name, $email, $phone, $address);
+    // Execute statement
+    if ($stmt->execute()) {
         echo "<p>Customer added successfully.</p>";
     } else {
-        echo "<p>Error adding customer: " . $conn->error . "</p>";
+        echo "<p>Error adding customer: " . $stmt->error . "</p>";
     }
+    // Close statement
+    $stmt->close();
 }
 ?>
 
@@ -27,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Customers</title>
     <link rel="stylesheet" href="../../css/Customers.css"> <!-- Link to your CSS file -->
     <script>
-function deleteCustomer(customerId) {
-    if(confirm('Are you sure you want to delete this customer?')) {
+       function deleteCustomer(customerId) {
+           if(confirm('Are you sure you want to delete this customer?')) {
         // AJAX request to a PHP file that handles deletion
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "delete_customer.php", true);
@@ -41,22 +46,19 @@ function deleteCustomer(customerId) {
             }
         };
         xhr.send("customer_id=" + customerId);
-    }
-}
-
-function toggleAddCustomerForm() {
-        var form = document.getElementById('addCustomerForm');
-        if (form.style.display === "none" || form.style.display === "") {
-            form.style.display = "block";
-        } else {
-            form.style.display = "none";
-        }
-    }
-
-    // Event listener for the 'Add Customer' button
-    document.getElementById('showFormBtn').addEventListener('click', toggleAddCustomerForm);
-;
+        }}
+        function toggleAddCustomerForm() {
+            var form = document.getElementById('addCustomerForm');
+            if (form.style.display === "none" || form.style.display === "") {
+                form.style.display = "block";
+                } else {
+                    form.style.display = "none";
+                    }}
+        // Event listener for the 'Add Customer' button
+        document.getElementById('showFormBtn').addEventListener('click', toggleAddCustomerForm);
+        ;
     </script>
+    
 </head>
 <body>
     <h1>Customer List</h1>
@@ -73,14 +75,12 @@ function toggleAddCustomerForm() {
         </thead>
         <tbody>
         <?php
-include 'db_connection.php';
-
-// Fetch customers
-$sql = "SELECT * FROM customers";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // Output data of each row
+        include 'db_connection.php';
+        // Fetch customers
+        $sql = "SELECT * FROM customers";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            // Output data of each row
     while($row = $result->fetch_assoc()) {
         echo "<tr>
                 <td>".$row["customer_id"]."</td>
@@ -102,7 +102,7 @@ $conn->close();
 ?>
         </tbody>
     </table>
-    <button id="showFormBtn">Add Customer</button>
+    <button id="showFormBtn" onclick=" toggleAddCustomerForm()">Add Customer</button>
 
 <div id="addCustomerForm">
     <h2>Add Customer</h2>
