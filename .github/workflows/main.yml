@@ -13,18 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set timestamp variable
-        id: timestamp
-        run: echo "::set-output name=timestamp::$(date +%Y%m%d)"
-
-      - name: Build App Docker image 
-        run: docker build -t danikais/danikais:latest -f Dockerfile .
+      - name: Build App Docker image + ":$BUILD_NUMBER"
+        run: docker build -t danikais/danikais -f Dockerfile .
 
       - name: Build Database Docker image
-        run: docker build -t danikais/mysql:latest -f Dockerfile.mysql .
+        run: docker build -t danikais/mysql -f Dockerfile.mysql .
 
       - name: Build phpMyAdmin Docker image
-        run: docker build -t danikais/php:latest -f Dockerfile.php .
+        run: docker build -t danikais/php -f Dockerfile.php .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -33,10 +29,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push App Docker image
-        run: docker push danikais/danikais:latest
+        run: docker push danikais/danikais
 
       - name: Push Database Docker image
-        run: docker push danikais/mysql:latest
+        run: docker push danikais/mysql
 
       - name: Push phpMyAdmin Docker image
-        run: docker push danikais/php:latest
+        run: docker push danikais/php
