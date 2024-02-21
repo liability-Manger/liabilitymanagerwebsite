@@ -15,7 +15,7 @@ jobs:
 
       - name: Set timestamp variable
         id: timestamp
-        run: echo "::set-output name=timestamp::$(date +%Y%m%d%H%M%S)"
+        run: echo "::set-output name=timestamp::$(date +%Y%m%d)"
 
       - name: Build App Docker image 
         run: docker build -t danikais/danikaistest:${{ steps.timestamp.outputs.timestamp }} -f Dockerfile .
