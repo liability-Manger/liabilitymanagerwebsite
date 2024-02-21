@@ -2,15 +2,16 @@
 FROM mysql:5.7
 
 # Set environment variables for MySQL
-ENV MYSQL_DATABASE=mydatabase \
-    MYSQL_ROOT_PASSWORD=myrootpassword \
-    MYSQL_USER=myuser \
-    MYSQL_PASSWORD=mypassword
+ENV MYSQL_DATABASE=lb-database \
+    MYSQL_ROOT_PASSWORD=admin \
+    MYSQL_USER=admin-username \
+    MYSQL_PASSWORD=admin
 
 # Optional: Add custom configuration
-# >COPY my-custom.cnf /etc/mysql/conf.d/
+COPY my-custom.cnf /etc/mysql/conf.d/
 
 # Optional: Initialize the database
-# >COPY ./sql-scripts/ /docker-entrypoint-initdb.d/
+COPY ./sql-scripts/ /docker-entrypoint-initdb.d/
 
-EXPOSE 3306
+EXPOSE 80
+EXPOSE 8080
