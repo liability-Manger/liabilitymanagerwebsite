@@ -2,8 +2,8 @@
 FROM phpmyadmin/phpmyadmin:latest
 
 # Set environment variables for MySQL connection
-ENV PMA_HOST=mysql
-ENV PMA_USER=admin
+ENV PMA_HOST=db-service
+ENV PMA_USER=admin-username
 ENV PMA_PASSWORD=admin
 ENV PMA_ARBITRARY=1
 
