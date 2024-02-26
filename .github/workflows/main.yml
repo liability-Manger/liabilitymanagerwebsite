@@ -1,5 +1,4 @@
-name: Building Docker images on dep
-
+name: Build Docker Images
 on:
   push:
     branches:
@@ -43,7 +42,7 @@ jobs:
 
 ---
 
-name: bulding images on prod
+name: Build Docker Images
 
 on:
   push:
