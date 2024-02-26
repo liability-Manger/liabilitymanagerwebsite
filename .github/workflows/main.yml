@@ -1,6 +1,5 @@
-
-
 name: Build Docker Images
+
 on:
   push:
     branches:
@@ -41,10 +40,8 @@ jobs:
 
       - name: Push phpMyAdmin Docker image
         run: docker push danikais/phptest:latest
-
 ---
-
-name: Build Docker Images
+name: Building Docker images on prod
 
 on:
   push:
