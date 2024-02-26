@@ -40,4 +40,3 @@ jobs:
 
       - name: Push phpMyAdmin Docker image
         run: docker push danikais/phptest:latest
----
