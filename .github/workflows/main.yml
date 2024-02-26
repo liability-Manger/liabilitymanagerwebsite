@@ -1,13 +1,13 @@
-name: Build Docker Images
+name: Build and Push Docker Images
 
 on:
   push:
     branches:
       - dep
       - prod
-      
+
 jobs:
-  build:
+  build_and_push_images:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,14 +18,29 @@ jobs:
         id: timestamp
         run: echo "::set-output name=timestamp::$(date +%Y%m%d%H%M%S)"
 
-      - name: Build App Docker image 
-        run: docker build -t danikais/danikaistest:latest -f Dockerfile .
+      - name: Build App Docker image
+        if: github.ref == 'refs/heads/dep'
+        run: docker build -t danikais/danikais:latest -f Dockerfile.dep .
 
       - name: Build Database Docker image
-        run: docker build -t danikais/mysqltest:latest -f Dockerfile.mysql .
+        if: github.ref == 'refs/heads/dep'
+        run: docker build -t danikais/mysql:latest -f Dockerfile.mysql.dep .
 
       - name: Build phpMyAdmin Docker image
-        run: docker build -t danikais/phptest:latest -f Dockerfile.php .
+        if: github.ref == 'refs/heads/dep'
+        run: docker build -t danikais/php:latest -f Dockerfile.php.dep .
+
+      - name: Build App Docker image
+        if: github.ref == 'refs/heads/prod'
+        run: docker build -t danikais/danikaistest-prod:latest -f Dockerfile.prod .
+
+      - name: Build Database Docker image
+        if: github.ref == 'refs/heads/prod'
+        run: docker build -t danikais/mysqltest-prod:latest -f Dockerfile.mysql.prod .
+
+      - name: Build phpMyAdmin Docker image
+        if: github.ref == 'refs/heads/prod'
+        run: docker build -t danikais/phptest-prod:latest -f Dockerfile.php.prod .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -34,11 +49,25 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push App Docker image
-        run: docker push danikais/danikaistest:latest
+        if: github.ref == 'refs/heads/dep'
+        run: docker push danikais/danikais:latest
 
       - name: Push Database Docker image
-        run: docker push danikais/mysqltest:latest
+        if: github.ref == 'refs/heads/dep'
+        run: docker push danikais/mysql:latest
 
       - name: Push phpMyAdmin Docker image
-        run: docker push danikais/phptest:latest
+        if: github.ref == 'refs/heads/dep'
+        run: docker push danikais/php:latest
 
+      - name: Push App Docker image
+        if: github.ref == 'refs/heads/prod'
+        run: docker push danikais/danikaistest-prod:latest
+
+      - name: Push Database Docker image
+        if: github.ref == 'refs/heads/prod'
+        run: docker push danikais/mysqltest-prod:latest
+
+      - name: Push phpMyAdmin Docker image
+        if: github.ref == 'refs/heads/prod'
+        run: docker push danikais/phptest-prod:latest
