@@ -41,7 +41,7 @@ jobs:
       - name: Push phpMyAdmin Docker image
         run: docker push danikais/phptest:latest
 ---
-name: Building Docker images on prod
+name: Build Docker Images
 
 on:
   push:
