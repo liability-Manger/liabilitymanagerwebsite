@@ -20,27 +20,27 @@ jobs:
 
       - name: Build App Docker image
         if: github.ref == 'refs/heads/dep'
-        run: docker build -t danikais/danikais:latest -f Dockerfile.dep .
+        run: docker build -t danikais/danikais:latest -f Dockerfile .
 
       - name: Build Database Docker image
         if: github.ref == 'refs/heads/dep'
-        run: docker build -t danikais/mysql:latest -f Dockerfile.mysql.dep .
+        run: docker build -t danikais/mysql:latest -f Dockerfile.mysql .
 
       - name: Build phpMyAdmin Docker image
         if: github.ref == 'refs/heads/dep'
-        run: docker build -t danikais/php:latest -f Dockerfile.php.dep .
+        run: docker build -t danikais/php:latest -f Dockerfile.php .
 
       - name: Build App Docker image
         if: github.ref == 'refs/heads/prod'
-        run: docker build -t danikais/danikaistest-prod:latest -f Dockerfile.prod .
+        run: docker build -t danikais/danikaistest-prod:latest -f Dockerfile .
 
       - name: Build Database Docker image
         if: github.ref == 'refs/heads/prod'
-        run: docker build -t danikais/mysqltest-prod:latest -f Dockerfile.mysql.prod .
+        run: docker build -t danikais/mysqltest-prod:latest -f Dockerfile.mysql .
 
       - name: Build phpMyAdmin Docker image
         if: github.ref == 'refs/heads/prod'
-        run: docker build -t danikais/phptest-prod:latest -f Dockerfile.php.prod .
+        run: docker build -t danikais/phptest-prod:latest -f Dockerfile.php .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
