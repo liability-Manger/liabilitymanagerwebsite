@@ -1,16 +1,13 @@
-# Use the official MySQL image as the base
-FROM mysql:5.7
+# Use an official MySQL runtime as a parent image
+FROM mysql:latest
 
-# Set environment variables for MySQL
-ENV MYSQL_DATABASE=lb-database \
-    MYSQL_ROOT_PASSWORD=admin \
-    MYSQL_USER=admin-username \
-    MYSQL_PASSWORD=admin
+# Set the MySQL root password
+ENV MYSQL_ROOT_PASSWORD=root
 
-# Optional: Add custom configuration
-# COPY my-custom.cnf /etc/mysql/conf.d/
+# Create a database and user
+ENV MYSQL_DATABASE=mydatabase
+ENV MYSQL_USER=admin
+ENV MYSQL_PASSWORD=root
 
-# Optional: Initialize the database
-# COPY ./sql-scripts/ /docker-entrypoint-initdb.d/
-
-EXPOSE 3306
+# When container starts, execute the following SQL script
+COPY ./admin.sql /docker-entrypoint-initdb.d/

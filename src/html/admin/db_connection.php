@@ -1,9 +1,9 @@
 <?php
 // Database configuration
-$servername = "localhost"; // XAMPP uses localhost as the database server hostname
-$username = "root"; // Default username for XAMPP's MySQL is root
-$password = ""; // Default password is empty for XAMPP
-$dbname = "liabilitymanager"; // Change this to your database name if different
+$servername = "db-service"; // For Docker and Minikube, use the appropriate IP or hostname
+$username = "admin";
+$password = "root"; // Assuming the password is 'root'
+$dbname = "mydatabase"; // Change this to your database name if different
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

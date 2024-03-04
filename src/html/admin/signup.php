@@ -2,8 +2,8 @@
 // Include your database connection file
 include 'db_connection.php';
 
-// Check if email is set and not empty
-if(isset($_POST['email']) && !empty($_POST['email'])) {
+// Check if email, password, and name are set and not empty
+if(isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['password']) && !empty($_POST['password']) && isset($_POST['name']) && !empty($_POST['name'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $name = $_POST['name'];
@@ -25,12 +25,9 @@ if(isset($_POST['email']) && !empty($_POST['email'])) {
         echo "Email already in use. Please choose another email.";
     } else {
         // Email doesn't exist, proceed with signup
-        // Hash the password for security
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
         // Insert new admin into the admins table using prepared statement
         $insertStmt = $conn->prepare("INSERT INTO admins (name, email, password) VALUES (?, ?, ?)");
-        $insertStmt->bind_param("sss", $name, $email, $hashed_password);
+        $insertStmt->bind_param("sss", $name, $email, $password); // Save password as plain text
         if ($insertStmt->execute()) {
             header("Location: adminlogin.php");
         } else {
@@ -40,7 +37,7 @@ if(isset($_POST['email']) && !empty($_POST['email'])) {
     $stmt->close();
     $insertStmt->close();
 } else {
-    echo "Email field is required.";
+    echo "Email, password, and name fields are required.";
 }
 
 $conn->close();
