@@ -48,7 +48,7 @@
         <a href="#" onclick="loadPage('time_tracking.php')">Time Tracking</a>
         <a href="#" onclick="loadPage('accountant.php')">Accountant</a>
         <a href="#" onclick="loadPage('reports.php')">Reports</a>
-        <a href="#" onclick="loadPage('documents.php')">Documents</a>
+        <a href="#" onclick="loadPage('ChatBot.php')">ChatBot</a>
     </div>
     <div id="content">
         <iframe id="iframe" src="home.php"></iframe>
