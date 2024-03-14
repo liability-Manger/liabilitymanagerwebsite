@@ -5,6 +5,8 @@ on:
     branches:
       - dep
       - prod
+  pull_request:
+    types: [closed]
 
 jobs:
   build_and_push_images:
@@ -19,15 +21,15 @@ jobs:
         run: echo "::set-output name=timestamp::$(date +%Y%m%d%H%M%S)"
 
       - name: Build App Docker image
-        if: github.ref == 'refs/heads/dep'
+        if: github.ref == 'refs/heads/dep' || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'dep' && github.event.pull_request.head.ref == 'prod')
         run: docker build -t danikais/danikais:latest -f Dockerfile .
 
       - name: Build Database Docker image
-        if: github.ref == 'refs/heads/dep'
+        if: github.ref == 'refs/heads/dep' || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'dep' && github.event.pull_request.head.ref == 'prod')
         run: docker build -t danikais/mysql:latest -f Dockerfile.mysql .
 
       - name: Build phpMyAdmin Docker image
-        if: github.ref == 'refs/heads/dep'
+        if: github.ref == 'refs/heads/dep' || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'dep' && github.event.pull_request.head.ref == 'prod')
         run: docker build -t danikais/php:latest -f Dockerfile.php .
 
       - name: Build App Docker image
@@ -49,15 +51,15 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push App Docker image
-        if: github.ref == 'refs/heads/dep'
+        if: github.ref == 'refs/heads/dep' || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'dep' && github.event.pull_request.head.ref == 'prod')
         run: docker push danikais/danikais:latest
 
       - name: Push Database Docker image
-        if: github.ref == 'refs/heads/dep'
+        if: github.ref == 'refs/heads/dep' || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'dep' && github.event.pull_request.head.ref == 'prod')
         run: docker push danikais/mysql:latest
 
       - name: Push phpMyAdmin Docker image
-        if: github.ref == 'refs/heads/dep'
+        if: github.ref == 'refs/heads/dep' || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'dep' && github.event.pull_request.head.ref == 'prod')
         run: docker push danikais/php:latest
 
       - name: Push App Docker image
