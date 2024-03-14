@@ -15,7 +15,7 @@ if(isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['password']
     }
 
     // Check if email already exists in the admins table
-    $stmt = $conn->prepare("SELECT email FROM admins WHERE email = ?");
+    $stmt = $conn->prepare("SELECT email FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();

@@ -56,7 +56,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bind_param("sssd", $target_file, $itemName, $itemDescription, $itemPrice);
 
                 if($stmt->execute()){
-                    echo "The item has been added successfully.";
+                    // Redirect the user to a different page after form submission
+                    header("Location: success.php"); // Replace "success.php" with the URL of your success page
+                    exit(); // Terminate the script to prevent further execution
                 } else{
                     echo "Error: " . $conn->error;
                 }
