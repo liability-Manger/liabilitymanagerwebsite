@@ -37,7 +37,7 @@
 </header>
 
     <div id="sidebar">
-        <a href="#" onclick="loadPage('home.php')">Home tests</a>
+        <a href="#" onclick="loadPage('home.php')">Home </a>
         <a href="#" onclick="loadPage('items.php')">Items</a>
         <a href="#" onclick="loadPage('banking.php')">Banking</a>
         <a href="#" onclick="loadPage('')">Sales</a>
